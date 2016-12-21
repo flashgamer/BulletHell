@@ -26,10 +26,10 @@ function draw() {
     sprite.draw();
     if ((keyIsDown(LEFT_ARROW) || keyIsDown(65)) && sprite.x > 0) // Left or 'A'
         sprite.x -= 3;
-    if ((keyIsDown(RIGHT_ARROW) || keyIsDown(68)) && sprite.width < width) // Right or 'D'
+    if ((keyIsDown(RIGHT_ARROW) || keyIsDown(68)) && sprite.width + sprite.x < width) // Right or 'D'
         sprite.x += 3;
     if ((keyIsDown(UP_ARROW) || keyIsDown(87)) && sprite.y > 0) // Up or 'W'
         sprite.y -= 3;
-    if ((keyIsDown(DOWN_ARROW) || keyIsDown(83)) && sprite.height < height) // Down or 'S'
+    if ((keyIsDown(DOWN_ARROW) || keyIsDown(83)) && sprite.height + sprite.y < height) // Down or 'S'
         sprite.y += 3;
 }
