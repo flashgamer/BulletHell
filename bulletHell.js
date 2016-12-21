@@ -62,6 +62,7 @@ function starUpdate() {
         // Create new bullet
         this.bullets.push(
             new Sprite({
+                dir: this.dir,
                 src: "bullet"
             },
             {
@@ -86,7 +87,7 @@ function starDraw() {
 }
 
 function bulletConstructor(params) {
-    this.dir = createVector(1, 0);
+    this.dir = params.dir || createVector(1, 0);
     this.speed = 10;
     this.x = sprite.x + sprite.width / 2 - this.width / 2;
     this.y = sprite.y + sprite.height / 2 - this.height / 2;
