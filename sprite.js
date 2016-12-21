@@ -13,6 +13,6 @@ function Sprite(params, update, draw) {
 
     this.draw = draw || function () {
         // Default draw behavior
-        image(this.img, this.x, this.y);
+        image(this.img, this.x, this.y, this.width, this.height);
     }
 }
