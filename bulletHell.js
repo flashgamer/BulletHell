@@ -23,8 +23,13 @@ function draw() {
     //    image(img, x, y);
     //    y += yspeed++ / 2;
     //}
-    if (sprite.y < canvas.height) {
-        sprite.draw();
-        sprite.y += yspeed++ / 2;
-    }
+    sprite.draw();
+    if (keyIsDown(LEFT_ARROW))
+        sprite.x -= 3;
+    if (keyIsDown(RIGHT_ARROW))
+        sprite.x += 3;
+    if (keyIsDown(UP_ARROW))
+        sprite.y -= 3;
+    if (keyIsDown(DOWN_ARROW))
+        sprite.y += 3;
 }
