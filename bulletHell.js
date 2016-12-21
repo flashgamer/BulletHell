@@ -3,6 +3,7 @@ var x = 0;
 var y = 0;
 var yspeed = 2;
 var img;
+var sprite;
 
 function preload() {
     //Load images here
@@ -11,14 +12,19 @@ function preload() {
 
 function setup() {
     canvas = createCanvas(displayWidth, displayHeight);
-    x = canvas.width / 2;
+    //x = canvas.width / 2;
+    sprite = new Sprite({ x: displayWidth / 2, y: 0, src: "res/star.png" });
 }
 
 function draw() {
     background(150);
-    if (y < canvas.height) {
-        //rect(x, y, 10, 10);
-        image(img, x, y);
-        y += yspeed++ / 2;
+    //if (y < canvas.height) {
+    //    //rect(x, y, 10, 10);
+    //    image(img, x, y);
+    //    y += yspeed++ / 2;
+    //}
+    if (sprite.y < canvas.height) {
+        sprite.draw();
+        sprite.y += yspeed++ / 2;
     }
 }

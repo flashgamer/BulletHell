@@ -3,7 +3,7 @@ function Sprite(params, update, draw) {
     this.y = params.y || 0;
     this.src = params.src || 0;
 
-    this.img = loadImage(src);
+    this.img = loadImage(this.src);
 
     this.update = update || function () {
         // Default update behavior
