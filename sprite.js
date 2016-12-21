@@ -4,6 +4,8 @@ function Sprite(params, update, draw) {
     this.src = params.src || 0;
 
     this.img = loadImage(this.src);
+    this.width = params.width || img.width;
+    this.height = params.height || img.height;
 
     this.update = update || function () {
         // Default update behavior
