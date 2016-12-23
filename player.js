@@ -3,24 +3,25 @@
 function playerConstructor(params) {
     this.bullets = [];
     this.dir = params.dir || createVector(0, 0);
+    this.speed = params.speed || 3;
 }
 
 function playerUpdate() {
     // Deal with input
     if ((keyIsDown(LEFT_ARROW) || keyIsDown(65)) && player.x > 0) { // Left or 'A'
-        this.x -= 3;
+        this.x -= this.speed;
         this.dir = createVector(-1, 0);
     }
     if ((keyIsDown(RIGHT_ARROW) || keyIsDown(68)) && player.width + player.x < width) { // Right or 'D'
-        this.x += 3;
+        this.x += this.speed;
         this.dir = createVector(1, 0);
     }
     if ((keyIsDown(UP_ARROW) || keyIsDown(87)) && player.y > 0) { // Up or 'W'
-        this.y -= 3;
+        this.y -= this.speed;
         this.dir = createVector(0, -1);
     }
     if ((keyIsDown(DOWN_ARROW) || keyIsDown(83)) && player.height + player.y < height) { // Down or 'S'
-        this.y += 3;
+        this.y += this.speed;
         this.dir = createVector(0, 1);
     }
     if (keyIsDown(32)) {
