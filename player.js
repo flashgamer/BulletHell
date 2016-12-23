@@ -7,19 +7,19 @@ function playerConstructor(params) {
 
 function playerUpdate() {
     // Deal with input
-    if ((keyIsDown(LEFT_ARROW) || keyIsDown(65)) && sprite.x > 0) { // Left or 'A'
+    if ((keyIsDown(LEFT_ARROW) || keyIsDown(65)) && player.x > 0) { // Left or 'A'
         this.x -= 3;
         this.dir = createVector(-1, 0);
     }
-    if ((keyIsDown(RIGHT_ARROW) || keyIsDown(68)) && sprite.width + sprite.x < width) { // Right or 'D'
+    if ((keyIsDown(RIGHT_ARROW) || keyIsDown(68)) && player.width + player.x < width) { // Right or 'D'
         this.x += 3;
         this.dir = createVector(1, 0);
     }
-    if ((keyIsDown(UP_ARROW) || keyIsDown(87)) && sprite.y > 0) { // Up or 'W'
+    if ((keyIsDown(UP_ARROW) || keyIsDown(87)) && player.y > 0) { // Up or 'W'
         this.y -= 3;
         this.dir = createVector(0, -1);
     }
-    if ((keyIsDown(DOWN_ARROW) || keyIsDown(83)) && sprite.height + sprite.y < height) { // Down or 'S'
+    if ((keyIsDown(DOWN_ARROW) || keyIsDown(83)) && player.height + player.y < height) { // Down or 'S'
         this.y += 3;
         this.dir = createVector(0, 1);
     }
@@ -38,8 +38,11 @@ function playerUpdate() {
     }
     
     // Updating bullets
-    for (var i = 0; i < this.bullets.length; i++) {
+    for (var i = this.bullets.length - 1; i > -1; i--) {
         this.bullets[i].update()
+        if (this.bullets[i].x < 0 || this.bullets[i].x > width || this.bullets[i].y < 0 || this.bullets[i].y > height) {
+            this.bullets.splice(i, 1);
+        }
     }
 
 }
