@@ -27,7 +27,7 @@ function setup() {
 
     walls.push(
         new Wall({
-            x: 0,
+            x: 256,
             y: 0,
             width: 128,
             height: 128 * 5,

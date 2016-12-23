@@ -36,12 +36,27 @@ function playerUpdate() {
             })
         );
     }
+
+    // Updating location
+    this.top = this.y;
+    this.bottom = this.y + this.height;
+    this.left = this.x;
+    this.right = this.x + this.width;
     
     // Updating bullets
     for (var i = this.bullets.length - 1; i > -1; i--) {
         this.bullets[i].update()
         if (this.bullets[i].x < 0 || this.bullets[i].x > width || this.bullets[i].y < 0 || this.bullets[i].y > height) {
             this.bullets.splice(i, 1);
+        }
+    }
+
+    // Updating collision
+    for (var i = walls.length - 1; i > -1; i--) {
+        if (colliding(this, walls[i])) {
+            walls[i].color = 'red';
+        } else {
+            walls[i].color = 'black';
         }
     }
 

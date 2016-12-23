@@ -7,7 +7,10 @@ function Wall(params, methods) {
     this.height = params.height || 50;
     this.color = params.color || "black";
 
-    // Calculate top/bottom/left/right
+    this.top = this.y;
+    this.bottom = this.y + this.height;
+    this.left = this.x;
+    this.right = this.x + this.width;
 
     this.draw = methods.draw || function () {
         fill(this.color);

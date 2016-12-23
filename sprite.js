@@ -13,6 +13,11 @@
         this.width = params.width || this.img.width;
         this.height = params.height || this.img.height;
 
+        this.top = this.y;
+        this.bottom = this.y + this.height;
+        this.left = this.x;
+        this.right = this.x + this.width;
+
         if (methods.constructor) {
             this.constructor = methods.constructor;
             this.constructor(params);
