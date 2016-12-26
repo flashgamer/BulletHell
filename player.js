@@ -25,7 +25,7 @@ function playerUpdate() {
         this.dir = createVector(0, 1);
     }
     if (keyIsDown(32)) {
-        // Create new bullet
+        // Create new bullet when spacebar is down.
         this.bullets.push(
             new Sprite({
                 dir: this.dir,
@@ -43,7 +43,7 @@ function playerUpdate() {
     this.bottom = this.y + this.height;
     this.left = this.x;
     this.right = this.x + this.width;
-    
+
     // Updating bullets
     for (var i = this.bullets.length - 1; i > -1; i--) {
         this.bullets[i].update()

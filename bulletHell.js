@@ -8,7 +8,7 @@ function preload() {
     //Load images here
     res["star"] = loadImage("res/star.png");
     res["bullet"] = loadImage("res/bullet.png");
-    framerate(60);
+    frameRate(60);
 }
 
 function setup() {
@@ -19,12 +19,13 @@ function setup() {
         width: 128,
         height: 128,
         speed: 5,
-        src: "star"
+        src: "star",
+        numFrames: 4
     },
     {
         update: playerUpdate,
         constructor: playerConstructor,
-        draw: playerDraw
+        // draw: playerDraw
     });
 
     walls.push( new Wall({
