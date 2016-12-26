@@ -9,10 +9,7 @@ function preload() {
     //Load images here
     res["star"] = loadImage("res/star.png");
     res["bullet"] = loadImage("res/bullet.png");
-<<<<<<< HEAD
-=======
     res["turret"] = loadImage("res/turret.png");
->>>>>>> da5d35b5a38ce1fc36c91c23b67b3df7471f8738
     frameRate(60);
 }
 
