@@ -1,6 +1,7 @@
     function Sprite(params, methods) {
         this.x = params.x || 0;
         this.y = params.y || 0;
+        this.loc = createVector(this.x, this.y);
         this.src = params.src || 0;
         this.numFrames = params.numFrames || 1;
         this.repeat = params.repeat || true;
@@ -17,7 +18,11 @@
         this.left = this.x;
         this.right = this.x + this.width;
 
+<<<<<<< HEAD
         this.frameIndex = 0;
+=======
+        this.center = this.loc.add(createVector(this.width / 2, this.height / 2));
+>>>>>>> da5d35b5a38ce1fc36c91c23b67b3df7471f8738
 
         if (methods.constructor) {
             this.constructor = methods.constructor;
