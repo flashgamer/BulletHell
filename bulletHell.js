@@ -72,4 +72,15 @@ function draw() {
         walls[i].draw();
     }
     turret.draw();
+
+    image(res["turret"],
+        512,
+        512,
+        128,
+        128,
+        0,
+        0,
+        200,
+        200
+        );
 }
