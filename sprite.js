@@ -42,7 +42,7 @@
                 this.y, // Destination y-pos
                 this.width, // Desired width at Destination
                 this.height, // Desired heigth at Destination
-                this.frameIndex * (this.width / this.numFrames), // Source x-pos
+                this.frameIndex * (this.img.width / this.numFrames), // Source x-pos
                 0, // Source y-pos
                 this.img.width / this.numFrames, // Source draw width
                 this.height); // Source draw height

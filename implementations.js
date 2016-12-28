@@ -67,6 +67,12 @@ function playerUpdate() {
         }
     }
 
+    // Updating animation
+    this.frameIndex++;
+    if (this.frameIndex >= this.numFrames) {
+        this.frameIndex = 0;
+    }
+
 }
 
 function playerDraw() {
