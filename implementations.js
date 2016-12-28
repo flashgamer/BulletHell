@@ -55,9 +55,9 @@ function playerUpdate() {
     }
 
     // Updating turrets...?
-    for (var i = turrets.length - 1; i > -1; i--) {
-        turrets[i].dir = this.center.sub(turrets[i].center).normalize();
-    }
+    //for (var i = turrets.length - 1; i > -1; i--) {
+    //    turrets[i].dir = this.center.copy().sub(turrets[i].center).normalize();
+    //}
 
     // Updating collision
     for (var i = walls.length - 1; i > -1; i--) {
@@ -98,12 +98,12 @@ Bullets
 */
 function bulletConstructor(params) {
     this.dir = params.dir || createVector(1, 0);
-    this.speed = 10;
+    this.speed = 15;
     //this.x = player.x + player.width / 2 - this.width / 2;
     //this.y = player.y + player.height / 2 - this.height / 2;
 }
 function bulletUpdate() {
-    //this.mandatoryUpdate();
+    this.mandatoryUpdate();
     this.x += this.dir.x * this.speed;
     this.y += this.dir.y * this.speed;
 }
@@ -120,14 +120,14 @@ Turrets
 */
 
 function turretConstructor(params) {
-    this.dir = player.center.sub(this.center).normalize();
-    this.maxCooldown = 100;
+    this.dir = player.center.copy().sub(this.center).normalize();
+    this.maxCooldown = 60;
     this.cooldown = this.maxCooldown;
     this.bullets = [];
 }
 function turretUpdate() {
     this.mandatoryUpdate();
-    //this.dir = player.center.sub(this.center).normalize();
+    this.dir = player.center.copy().sub(this.center).normalize();
     if (this.cooldown < 1) {
         // Shoot
         this.bullets.push(
@@ -135,7 +135,9 @@ function turretUpdate() {
                 dir: this.dir,
                 src: "bullet",
                 x: this.center.x,
-                y: this.center.y
+                y: this.center.y,
+                width: 16,
+                height: 16
             },
             {
                 update: bulletUpdate,
@@ -155,7 +157,13 @@ function turretUpdate() {
     }
 }
 function turretDraw() {
-    image(this.img, this.x, this.y, this.width, this.height);
+    //imageMode(CENTER)
+    resetMatrix();
+    translate(this.center.x, this.center.y);
+    rotate(this.dir.heading());
+    image(this.img, -this.width / 2, -this.height / 2, this.width, this.height);
+    resetMatrix();
+    //imageMode(CORNER);
     for (var i = this.bullets.length - 1; i > -1; i--) {
         this.bullets[i].draw();
     }

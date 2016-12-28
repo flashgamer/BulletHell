@@ -21,7 +21,7 @@ function setup() {
         y: 0,
         width: 128,
         height: 128,
-        speed: 5,
+        speed: 8,
         src: "star",
         numFrames: 4
     },
@@ -49,8 +49,8 @@ function setup() {
     turrets.push(new Sprite({
         x: 0,
         y: 0,
-        width: 128,
-        height: 128,
+        width: 128 / 2,
+        height: 128 / 2,
         src: "turret"
     },
     {
@@ -61,8 +61,8 @@ function setup() {
     turrets.push(new Sprite({
         x: 1080,
         y: 512,
-        width: 128,
-        height: 128,
+        width: 128 / 2,
+        height: 128 / 2,
         src: "turret"
     },
     {

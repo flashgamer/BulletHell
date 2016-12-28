@@ -20,7 +20,7 @@
 
         this.frameIndex = 0;
 
-        this.center = this.loc.add(createVector(this.width / 2, this.height / 2));
+        this.center = this.loc.copy().add(createVector(this.width / 2, this.height / 2));
 
         if (methods.constructor) {
             this.constructor = methods.constructor;
@@ -41,7 +41,7 @@
             this.right = this.x + this.width;
 
             this.loc = createVector(this.x, this.y);
-            this.center = this.loc.add(createVector(this.width / 2, this.height / 2));
+            this.center = this.loc.copy().add(createVector(this.width / 2, this.height / 2));
         }
 
 
@@ -58,6 +58,6 @@
                 this.frameIndex * (this.img.width / this.numFrames), // Source x-pos
                 0, // Source y-pos
                 this.img.width / this.numFrames, // Source draw width
-                this.height); // Source draw height
+                this.img.height); // Source draw height
         }
     }
