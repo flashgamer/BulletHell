@@ -27,12 +27,25 @@
             this.constructor(params);
         }
 
-        this.update = methods.update || function () {
+        this.mandatoryUpdate = function () {
+            // Updating Animation
             this.frameIndex++;
-            if (this.frameIndex > this.numFrames) {
+            if (this.frameIndex >= this.numFrames) {
                 this.frameIndex = 0;
             }
-            this.render();
+
+            // Updating location
+            this.top = this.y;
+            this.bottom = this.y + this.height;
+            this.left = this.x;
+            this.right = this.x + this.width;
+
+            this.center = createVector(this.x + this.width / 2, this.y + this.height / 2);
+            this.loc = createVector(this.x, this.y);
+        }
+
+        this.update = methods.update || function () {
+
         }
 
         this.draw = methods.draw || function () {
@@ -46,9 +59,5 @@
                 0, // Source y-pos
                 this.img.width / this.numFrames, // Source draw width
                 this.height); // Source draw height
-        }
-
-        this.render = methods.render || function () {
-            this.draw();
         }
     }

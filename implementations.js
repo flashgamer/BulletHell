@@ -13,6 +13,7 @@ function playerConstructor(params) {
 }
 
 function playerUpdate() {
+    this.mandatoryUpdate();
     // Deal with input
     if ((keyIsDown(LEFT_ARROW) || keyIsDown(65)) && player.x > 0) { // Left or 'A'
         this.x -= this.speed;
@@ -44,11 +45,6 @@ function playerUpdate() {
         );
     }
 
-    // Updating location
-    this.top = this.y;
-    this.bottom = this.y + this.height;
-    this.left = this.x;
-    this.right = this.x + this.width;
     
     // Updating bullets
     for (var i = this.bullets.length - 1; i > -1; i--) {
@@ -65,12 +61,6 @@ function playerUpdate() {
         } else {
             walls[i].color = 'black';
         }
-    }
-
-    // Updating animation
-    this.frameIndex++;
-    if (this.frameIndex >= this.numFrames) {
-        this.frameIndex = 0;
     }
 
 }
@@ -99,6 +89,7 @@ function bulletConstructor(params) {
     //this.y = player.y + player.height / 2 - this.height / 2;
 }
 function bulletUpdate() {
+    this.mandatoryUpdate();
     this.x += this.dir.x * this.speed;
     this.y += this.dir.y * this.speed;
 }
@@ -115,14 +106,14 @@ Turrets
 */
 
 function turretConstructor(params) {
-    this.dir = createVector(player.x - this.x, player.y - this.y).normalize();
+    this.dir = player.center.sub(this.center).normalize();
     console.log(this.dir);
     this.maxCooldown = 100;
     this.cooldown = this.maxCooldown;
     this.bullets = [];
 }
 function turretUpdate() {
-    this.dir = createVector(player.x - this.x, player.y - this.y).normalize();
+    this.dir = player.center.sub(this.center).normalize();
     if (this.cooldown < 1) {
         // Shoot
         this.bullets.push(
