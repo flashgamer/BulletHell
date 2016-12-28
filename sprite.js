@@ -40,12 +40,12 @@
             this.left = this.x;
             this.right = this.x + this.width;
 
-            this.center = createVector(this.x + this.width / 2, this.y + this.height / 2);
             this.loc = createVector(this.x, this.y);
+            this.center = this.loc.add(createVector(this.width / 2, this.height / 2));
         }
 
-        this.update = methods.update || function () {
 
+        this.update = methods.update || function () {
         }
 
         this.draw = methods.draw || function () {

@@ -3,13 +3,14 @@ var player;
 var bullet;
 var res = {};
 var walls = [];
-var turret;
+var turrets = [];
 
 function preload() {
     //Load images here
     res["star"] = loadImage("res/star.png");
     res["bullet"] = loadImage("res/bullet.png");
     res["turret"] = loadImage("res/turret.png");
+    res["redbullet"] = loadImage("res/redbullet.png");
     frameRate(60);
 }
 
@@ -26,7 +27,7 @@ function setup() {
     },
     {
         update: playerUpdate,
-        constructor: playerConstructor,
+        constructor: playerConstructor
         // draw: playerDraw
     });
 
@@ -45,7 +46,7 @@ function setup() {
             color: 'black'
     }, {}));
 
-    turret = new Sprite({
+    turrets.push(new Sprite({
         x: 0,
         y: 0,
         width: 128,
@@ -56,14 +57,28 @@ function setup() {
         update: turretUpdate,
         constructor: turretConstructor,
         draw: turretDraw
-    });
+    }));
+    turrets.push(new Sprite({
+        x: 1080,
+        y: 512,
+        width: 128,
+        height: 128,
+        src: "turret"
+    },
+    {
+        update: turretUpdate,
+        constructor: turretConstructor,
+        draw: turretDraw
+    }));
 }
 
 function draw() {
 
     //Update
     player.update();
-    turret.update();
+    for (var i = turrets.length - 1; i > -1; i--) {
+        turrets[i].update();
+    }
 
     //Draw
     background(100);
@@ -71,5 +86,7 @@ function draw() {
     for (var i = 0; i < walls.length; i++) {
         walls[i].draw();
     }
-    turret.draw();
+    for (var i = turrets.length - 1; i > -1; i--) {
+        turrets[i].draw();
+    }
 }

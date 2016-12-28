@@ -10,3 +10,15 @@ function colliding(ob1, ob2) {
         return false;
     }
 }
+
+function drawImage(sp) {
+    image(this.img,
+        sp.x, // Destination x-pos
+        sp.y, // Destination y-pos
+        sp.width, // Desired width at Destination
+        sp.height, // Desired heigth at Destination
+        sp.frameIndex * (this.img.width / this.numFrames), // Source x-pos
+        0, // Source y-pos
+        sp.img.width / this.numFrames, // Source draw width
+        sp.height); // Source draw height
+}

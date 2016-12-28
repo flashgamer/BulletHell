@@ -54,12 +54,26 @@ function playerUpdate() {
         }
     }
 
+    // Updating turrets...?
+    for (var i = turrets.length - 1; i > -1; i--) {
+        turrets[i].dir = this.center.sub(turrets[i].center).normalize();
+    }
+
     // Updating collision
     for (var i = walls.length - 1; i > -1; i--) {
         if (colliding(this, walls[i])) {
             walls[i].color = 'red';
         } else {
             walls[i].color = 'black';
+        }
+    }
+    for (var i = turrets.length - 1; i > -1; i--) {
+        for (var j = turrets[i].bullets.length - 1; j > -1; j--) {
+            if (colliding(this, turrets[i].bullets[j])) {
+                turrets[i].bullets[j].img = res['redbullet'];
+            } else {
+                turrets[i].bullets[j].img = res['bullet'];
+            }
         }
     }
 
@@ -89,7 +103,7 @@ function bulletConstructor(params) {
     //this.y = player.y + player.height / 2 - this.height / 2;
 }
 function bulletUpdate() {
-    this.mandatoryUpdate();
+    //this.mandatoryUpdate();
     this.x += this.dir.x * this.speed;
     this.y += this.dir.y * this.speed;
 }
@@ -107,13 +121,13 @@ Turrets
 
 function turretConstructor(params) {
     this.dir = player.center.sub(this.center).normalize();
-    console.log(this.dir);
     this.maxCooldown = 100;
     this.cooldown = this.maxCooldown;
     this.bullets = [];
 }
 function turretUpdate() {
-    this.dir = player.center.sub(this.center).normalize();
+    this.mandatoryUpdate();
+    //this.dir = player.center.sub(this.center).normalize();
     if (this.cooldown < 1) {
         // Shoot
         this.bullets.push(
