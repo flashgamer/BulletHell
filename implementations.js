@@ -10,10 +10,14 @@ function playerConstructor(params) {
     this.bullets = [];
     this.dir = params.dir || createVector(0, 0);
     this.speed = params.speed || 3;
+    this.lives = params.lives || 3;
 }
 
 function playerUpdate() {
     this.mandatoryUpdate();
+    if (this.lives <= 0) {
+        // Game Over state.
+    }
     // Deal with input
     if ((keyIsDown(LEFT_ARROW) || keyIsDown(65)) && player.x > 0) { // Left or 'A'
         this.x -= this.speed;
@@ -32,7 +36,7 @@ function playerUpdate() {
         this.dir = createVector(0, 1);
     }
     if (keyIsDown(32)) {
-        // Create new bullet
+        // Create new bullet on space bar press
         this.bullets.push(
             new Sprite({
                 dir: this.dir,
@@ -45,7 +49,7 @@ function playerUpdate() {
         );
     }
 
-    
+
     // Updating bullets
     for (var i = this.bullets.length - 1; i > -1; i--) {
         this.bullets[i].update()
@@ -71,6 +75,7 @@ function playerUpdate() {
         for (var j = turrets[i].bullets.length - 1; j > -1; j--) {
             if (colliding(this, turrets[i].bullets[j])) {
                 turrets[i].bullets[j].img = res['redbullet'];
+                this.lives--;
             } else {
                 turrets[i].bullets[j].img = res['bullet'];
             }
