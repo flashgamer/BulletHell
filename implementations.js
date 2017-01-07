@@ -10,7 +10,7 @@ function playerConstructor(params) {
     this.bullets = [];
     this.dir = params.dir || createVector(0, 0);
     this.speed = params.speed || 3;
-    this.lives = 3;
+    this.lives = params.lives || 3;
 }
 
 function playerUpdate() {

@@ -53,6 +53,8 @@ function draw() {
 
 function keyTyped() {
     if (key === 'r') {
+        state = "PLAY";
+        clear();
         resetSketch();
     }
     if (key === 'g') {
@@ -74,7 +76,8 @@ function resetSketch() {
     },
     {
         update: playerUpdate,
-        constructor: playerConstructor
+        constructor: playerConstructor,
+        lives: 3
         // draw: playerDraw
     });
 
