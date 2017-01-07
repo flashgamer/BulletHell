@@ -38,11 +38,25 @@ function draw() {
         turrets[i].draw();
     }
 
+    if (state == "GAME_OVER") {
+        clear();
+        background(100);
+        g = "Game Over";
+        r = "Press R to restart.";
+        textSize(72);
+        text(g, width / 3, height / 3);
+        textSize(60);
+        text(r, width / 3 - 40, height / 3 + height / 3);
+    }
+
 }
 
 function keyTyped() {
     if (key === 'r') {
         resetSketch();
+    }
+    if (key === 'g') {
+        state = "GAME_OVER";
     }
     return false;
 }
