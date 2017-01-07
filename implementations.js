@@ -16,7 +16,8 @@ function playerConstructor(params) {
 function playerUpdate() {
     this.mandatoryUpdate();
     if (this.lives <= 0) {
-        // Game Over state.
+        // Game Over state
+        state = "GAME_OVER";
     }
     // Deal with input
     if ((keyIsDown(LEFT_ARROW) || keyIsDown(65)) && player.x > 0) { // Left or 'A'

@@ -4,6 +4,7 @@ var bullet;
 var res = {};
 var walls = [];
 var turrets = [];
+var state;
 
 function preload() {
     //Load images here
@@ -16,6 +17,38 @@ function preload() {
 
 function setup() {
     canvas = createCanvas(windowWidth * 9 / 10, windowHeight * 9 / 10);
+    state = "PLAY";
+    resetSketch();
+}
+
+function draw() {
+    //Update
+    player.update();
+    for (var i = turrets.length - 1; i > -1; i--) {
+        turrets[i].update();
+    }
+
+    //Draw
+    background(100);
+    player.draw();
+    for (var i = 0; i < walls.length; i++) {
+        walls[i].draw();
+    }
+    for (var i = turrets.length - 1; i > -1; i--) {
+        turrets[i].draw();
+    }
+
+}
+
+function keyTyped() {
+    if (key === 'r') {
+        resetSketch();
+    }
+    return false;
+}
+
+function resetSketch() {
+    clear();
     player = new Sprite({
         x: width / 2,
         y: 0,
@@ -70,23 +103,4 @@ function setup() {
         constructor: turretConstructor,
         draw: turretDraw
     }));
-}
-
-function draw() {
-
-    //Update
-    player.update();
-    for (var i = turrets.length - 1; i > -1; i--) {
-        turrets[i].update();
-    }
-
-    //Draw
-    background(100);
-    player.draw();
-    for (var i = 0; i < walls.length; i++) {
-        walls[i].draw();
-    }
-    for (var i = turrets.length - 1; i > -1; i--) {
-        turrets[i].draw();
-    }
 }
